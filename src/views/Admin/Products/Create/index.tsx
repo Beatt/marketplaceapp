@@ -12,7 +12,7 @@ const AdminProductsCreate = () => {
     <Grid container>
       <Grid item sm={2} />
       <Grid item sm={8}>
-        <Typography id="modal-modal-title" variant="h4" component="h2" textAlign="center">
+        <Typography variant="h4" component="h2" textAlign="center">
           ¡Crear producto!
         </Typography>
         <AdminProductsForm onSubmit={handleSubmit} getUserAuth={() => ({ id: 1 })} />

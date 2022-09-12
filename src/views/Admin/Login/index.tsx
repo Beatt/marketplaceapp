@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box, Button, Grid, Modal, TextField, Typography } from '@mui/material'
+import { Box, Button, Grid, TextField, Typography } from '@mui/material'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { usersAuth } from '../../../api/users'
@@ -58,7 +58,7 @@ const Login = () => {
         <Grid container>
           <Grid item sm={12} textAlign="center">
             <Typography id="modal-modal-title" variant="h4" component="h2">
-              ¡Crear cuenta!
+              ¡Iniciar sesión!
             </Typography>
           </Grid>
           <Grid item sm={12}>
