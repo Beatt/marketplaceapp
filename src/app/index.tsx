@@ -6,6 +6,7 @@ import NavBar from './NavBar'
 import AdminProducts from '../views/Admin/Products'
 import AdminProductsCreate from '../views/Admin/Products/Create'
 import Login from '../views/Admin/Login'
+import Shop from '../views/Shop'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/shop" element={<Shop />} />
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/products/new" element={<AdminProductsCreate />} />
           </Routes>
