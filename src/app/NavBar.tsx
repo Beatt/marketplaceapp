@@ -12,25 +12,13 @@ import IconButton from '@mui/material/IconButton'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
-import Link from '@mui/material/Link'
 import MenuIcon from '@mui/icons-material/Menu'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import MainListItems from './ListItems'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="">
-        Marketplace
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
+import { useContext } from 'react'
+import { AuthContext } from '../contexts/AuthContext'
 
 const drawerWidth: number = 240
 
@@ -83,6 +71,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme()
 
 function NavBar({ children }: any) {
+  // @ts-ignore
+  const { authService } = useContext(AuthContext)
   const navigate = useNavigate()
   const [open, setOpen] = React.useState(true)
   const toggleDrawer = () => {
@@ -123,7 +113,17 @@ function NavBar({ children }: any) {
               Dashboard
             </Typography>
             <IconButton color="inherit">
-              <Button color="inherit">Inicio de sesión</Button>
+              {authService.isAuthenticate() && (
+                <Button
+                  color="inherit"
+                  onClick={() => {
+                    authService.logout()
+                    window.location.href = '/'
+                  }}
+                >
+                  Logout
+                </Button>
+              )}
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -160,10 +160,9 @@ function NavBar({ children }: any) {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
+              <Grid item sm={12}>
                 <Paper
                   sx={{
-                    p: 2,
                     display: 'flex',
                     flexDirection: 'column',
                   }}
@@ -172,7 +171,6 @@ function NavBar({ children }: any) {
                 </Paper>
               </Grid>
             </Grid>
-            <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
       </Box>

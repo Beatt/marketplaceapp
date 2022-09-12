@@ -14,7 +14,7 @@ const MainListItems = () => {
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
-        <ListItemText primary="Productos" />
+        <ListItemText primary="Inventario" />
       </ListItemButton>
     </React.Fragment>
   )

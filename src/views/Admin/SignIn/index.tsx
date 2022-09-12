@@ -3,6 +3,7 @@ import * as yup from 'yup'
 import { Button, Grid, TextField, Typography } from '@mui/material'
 import { useFormik } from 'formik'
 import { useSnackbar } from 'notistack'
+import { useNavigate } from 'react-router-dom'
 
 const validationSchema = yup.object({
   email: yup.string().email('Enter a valid email').required('Campo obligatorio'),
@@ -18,6 +19,7 @@ interface ISignIn {
 }
 
 const SignIn = ({ onSubmit }: ISignIn) => {
+  const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
   const formik = useFormik({
     initialValues: {
@@ -29,6 +31,7 @@ const SignIn = ({ onSubmit }: ISignIn) => {
     onSubmit: async (values) => {
       try {
         await onSubmit(values)
+        window.location.href = '/admin/products'
       } catch ({ errors }) {
         // @ts-ignore
         enqueueSnackbar(errors.join(', '), {
@@ -103,7 +106,7 @@ const SignIn = ({ onSubmit }: ISignIn) => {
           </Button>
         </Grid>
         <Grid item sm={12} textAlign="center">
-          <Button type="button" variant="text" color="primary" fullWidth>
+          <Button type="button" variant="text" color="primary" fullWidth onClick={() => navigate('/login')}>
             ¡Iniciar sesión!
           </Button>
         </Grid>
